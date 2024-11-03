@@ -27,14 +27,14 @@ async function searchLocation(client, longitude, latitude, radius, unit) {
     }
 }
 
-async function getDistance(client, place1, place2) {
-    const distance = await client.geoDist('locations', place1, place2, 'km');
-    console.log(`Distance between Sicily and Catania: ${distance} km`);
+async function getDistance(client, place1, place2, unit) {
+    const distance = await client.geoDist('locations', place1, place2, unit);
+    console.log(`Distance between ${place1} and ${place2}: ${distance} ${unit}`);
 }
 
 async function getPosition(client, place) {
     const position = await client.geoPos('locations', place);
-    console.log(`Position of Sicily:`, position);
+    console.log(`Position of ${place}:`, position);
 }
 
 
@@ -49,7 +49,7 @@ async function getPosition(client, place) {
     await searchLocation(client, 15, 37, 100, 'km')
 
     // get distance
-    await getDistance(client, 'Sicily', 'Catania')
+    await getDistance(client, 'Sicily', 'Catania', 'km')
 
     // get position
     await getPosition(client, 'Sicily')
