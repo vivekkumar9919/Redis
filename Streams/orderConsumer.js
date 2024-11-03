@@ -10,7 +10,7 @@ async function paymentConsumer(client) {
             const response = await client.xReadGroup(
                 'payment_group', 'payment_consumer',
                 { key: 'order_stream', id: '>' },
-                { COUNT: 1, BLOCK: 5000 }  // waits 5 seconds if no message
+                { COUNT: 1, BLOCK: 5000 } 
             );
 
             if (!response || response[0].messages.length === 0) {
